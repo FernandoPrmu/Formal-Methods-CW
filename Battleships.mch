@@ -33,7 +33,7 @@ OPERATIONS
     
     report <-- DeploySubMarine(player, xx, yy) =
     PRE
-        player : PLAYER & xx : grid_x & yy : grid_y
+        player : PLAYER & xx : grid_x & yy : grid_y & game_status = setting_up
     THEN
         IF (game_status /= setting_up) THEN
             report := error_game_not_ready
@@ -54,7 +54,7 @@ OPERATIONS
     //Operation: DeployDestroyer Rule: Placed second. Occupies 2 squares.
     report <-- DeployDestroyer(player, xx, yy, orient) =
     PRE
-        player : PLAYER & xx : grid_x & yy : grid_y & orient : ORIENTATION
+        player : PLAYER & xx : grid_x & yy : grid_y & orient : ORIENTATION & game_status = setting_up
     THEN
         IF (game_status /= setting_up) THEN
             report := error_game_not_ready
@@ -99,7 +99,7 @@ OPERATIONS
    
     report <-- DeployCruiser(player, xx, yy, orient) =
     PRE
-        player : PLAYER & xx : grid_x & yy : grid_y & orient : ORIENTATION
+        player : PLAYER & xx : grid_x & yy : grid_y & orient : ORIENTATION & game_status = setting_up
     THEN
         IF (game_status /= setting_up) THEN
             report := error_game_not_ready
@@ -152,7 +152,7 @@ OPERATIONS
     
     report <-- Shoot(player, xx, yy) =
     PRE
-        player : PLAYER & xx : grid_x & yy : grid_y
+        player : PLAYER & xx : grid_x & yy : grid_y & game_status = playing
     THEN
         IF (game_status /= playing) THEN
             report := error_game_not_ready
